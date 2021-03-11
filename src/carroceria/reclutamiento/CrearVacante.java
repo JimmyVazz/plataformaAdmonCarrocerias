@@ -6,11 +6,20 @@
 
 package carroceria.reclutamiento;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author cjvas
  */
 public class CrearVacante extends javax.swing.JFrame {
+    
+    //Objetos SQL
+   PreparedStatement ps;
+   ResultSet rs;
+   Connection con = null;
 
     /**
      * Creates new form CrearVacante
