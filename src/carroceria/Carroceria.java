@@ -6,6 +6,8 @@
 
 package carroceria;
 
+import carroceria.reclutamiento.Login;
+
 /**
  *
  * @author cjvas
@@ -17,6 +19,8 @@ public class Carroceria {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login inicio = new Login();
+        inicio.setVisible(true);
     }
     
 }

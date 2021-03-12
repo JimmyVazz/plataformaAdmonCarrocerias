@@ -8,6 +8,8 @@ package databaseControl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +63,31 @@ public class DatabaseHandler {
         if(con != null){
             con=null;
         }
+    }
+    
+    
+    public static boolean CheckLoginUser(String uname, String pass) { //get input from login system module
+        Connection connection = getConnection();
+        String checkQuery = "select * from usuarios where usuario = ? and password = ? "; // i don't use id from database table.
+        
+        PreparedStatement preparedStatement = null;
+        boolean status = false; //initially false
+
+        try {
+            preparedStatement = connection.prepareStatement(checkQuery);
+            preparedStatement.setString(1, uname); // dynamically sending username
+            preparedStatement.setString(2, pass); // sending password to checkquery statement
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            status = resultSet.next();
+            preparedStatement.close();
+            return status;
+
+        } catch (SQLException e) {
+//            e.getLocalizedMessage();
+            e.printStackTrace();
+        }
+        return status;
     }
     
 
